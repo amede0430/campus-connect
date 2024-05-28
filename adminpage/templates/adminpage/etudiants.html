@@ -1,0 +1,225 @@
+{% extends '../model.html' %}
+{% load static %}
+{% block content %}
+  <div class="content-body">
+    <div style="height: 500px;  background: url('../../static/assets1/images/hero-bg1.jpg') no-repeat fixed ;"></div>
+
+    <div class="container-fluid mt-3">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8" style="margin-top: -300px;">
+          <div class="card text-center">
+            <div class="d-flex">
+              <img class="img-fluid rounded-circle mx-auto my-3" style="width: 200px; height: 200px;" src="/static/{{ filiere.logo }}" alt="" />
+              <img class="img-fluid mx-auto my-3" style="width: 200px; height: 200px;" src="{% static 'assets1/images/arrow.png' %}" alt="" />
+              <div style="width: 200px; height: 200px; font-size:100px; display: flex; justify-content: center; align-items: center;" class="rounded-circle bg-dark mx-auto my-3">{{ classe.option_sigle }}</div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ classe.name }}</h5>
+              <p class="card-text">{{ filiere.name }} || {{ filiere.sigle }} || {{ classe.option }} || {{ classe.description }}</p>
+              <p class="card-text">
+                <small class="text-muted">{{ classe.sigle }}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row justify-content-between mx-5">
+                <h4 class="card-title">Liste des étudiants</h4>
+                <div class="form-group form-inline">
+                  <label for="" class="mx-3">Année Académique</label>
+                  <select class="form-control" id="annee_academique">
+                    {% for annee in annee_acads %}
+                      <option value="{{ annee.annee_academique }}">{{ annee.annee_academique }}</option>
+                    {% endfor %}
+                  </select>
+                  <script>
+                    $(document).ready(function() {
+                        $('#annee_academique').on('blur', function() {
+                            var annee_academique = $(this).val();
+                            var classe_id = {{classe.id|safe}};
+                            if (annee_academique) {
+                                $.ajax({
+                                    url: "{% url 'show' %}",
+                                    data: {
+                                        'annee_academique': annee_academique,
+                                        'classe_id' : classe_id
+                                    },
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        if (data.error) {
+                                            console.log(data.error);
+                                        } else {
+                                          console.log(data)
+                                          var etudiantsData = JSON.parse(data.ef);
+                                          var ef = etudiantsData;
+                                          console.log(ef)
+                                          let table = $('#tableEtudiant').DataTable();
+                                              // Clear existing table data
+                                              table.clear();
+                              
+                                              $.each(data.etudiants, function(index, etudiant) {
+                                                var moy_sem1 = ef[index].fields.moy_sem1;
+                                                var credit_sem1 = ef[index].fields.credit_sem1;
+                                                var saisieButton1 = '';
+                                                var moy_sem2 = ef[index].fields.moy_sem2;
+                                                var credit_sem2 = ef[index].fields.credit_sem2;
+                                                var saisieButton2 = '';
+                                                var reinscrireButton = '';
+                                                var decision = 'En Attente';
+
+                                               if (credit_sem1 != 30 && ef[index].fields.decision != 3) {
+                                                    saisieButton1 = `<a href="/admins/saisie/${classe_id}/${etudiant.id}" class="btn btn-outline-primary mx-2">Saisir</a>`;
+                                                }
+                                                if (credit_sem2 != 30 && ef[index].fields.decision != 3) {
+                                                  saisieButton2 = `<a href="/admins/saisie/${classe_id}/${etudiant.id}" class="btn btn-outline-primary mx-2">Saisir</a>`;
+                                                }
+                                                
+                                                if(ef[index].fields.decision == 1){
+                                                  decision = 'Admis(e)'
+                                                }
+
+                                                if(ef[index].fields.decision == 2){
+                                                  decision = 'Enjambé(e)'
+                                                }
+
+                                                if(ef[index].fields.decision == 3){
+                                                  decision = 'Echoué(e)'
+                                                }
+
+                                                if(ef[index].fields.decision != 0 && ef[index].fields.reinscrit == 0){
+                                                  reinscrireButton = `<a href="/admins/reinscrire/${classe_id}/${etudiant.id}" class="btn btn-outline-primary mx-2">Réinscrire</a>`;
+                                                }
+
+                                                table.row.add([
+                                                    etudiant.matricule,
+                                                    etudiant.nom,
+                                                    etudiant.prenoms,
+                                                    `<div class="row justify-content-between px-4">
+                                                        <div class="text-primary" >${moy_sem1} | ${credit_sem1} /30</div>
+                                                        ${saisieButton1}
+                                                    </div>`,
+                                                    `<div class="row justify-content-between px-4">
+                                                      <div class="text-primary" >${moy_sem2} | ${credit_sem2} /30</div>
+                                                      ${saisieButton2}
+                                                    </div>`,
+                                                    `<div class="text-primary" >${ef[index].fields.moy}</div>`,
+                                                    `<div class="row justify-content-between px-4">
+                                                      <div class="text-primary" >${decision}</div>
+                                                      ${reinscrireButton}
+                                                    </div>`,
+                                                    `<a href="/admins/etudiant/${etudiant.id}" class="text-primary">Voir plus</a>`
+                                                ]);
+                                            });
+                                            
+                                              table.draw();
+                                          
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+                </div>
+                <div class="col-lg-3 my-2">
+                  <a href=" {% url 'classe' filiere.id %} " class="btn btn-outline-danger">Retourner</a>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered zero-configuration" id="tableEtudiant">
+                  <thead>
+                    <tr>
+                      <th>Matricule</th>
+                      <th>Nom</th>
+                      <th>Prénoms</th>
+                      {% for sem in sems %}
+                        <th>Moy & Nbre crédits | Sem {{ sem }}</th>
+                      {% endfor %}
+                      <th>Moy</th>
+                      <th>Décision</th>
+                      <th>Détails</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for e, ef in etufil %}
+                      <tr>
+                        <td>{{ e.matricule }}</td>
+                        <td>{{ e.nom }}</td>
+                        <td>{{ e.prenoms }}</td>
+                        <td class="text-primary">
+                          <div class="row justify-content-between px-4">
+                            <div>{{ ef.moy_sem1 }} | {{ ef.credit_sem1 }}/30</div>
+
+                            {% if ef.credit_sem1 != 30 %}
+                              {% if ef.decision != 3 %}
+                                <a href="{% url 'saisie' classe.id e.id %}" class="btn btn-outline-primary mx-2">Saisir</a>
+                              {% endif %}
+                            {% endif %}
+                          </div>
+                        </td>
+                        <td class="text-primary">
+                          <div class="row justify-content-between px-4">
+                            <div>{{ ef.moy_sem2 }} | {{ ef.credit_sem2 }}/30</div>
+                            {% if ef.credit_sem2 != 30 %}
+                              {% if ef.decision != 3 %}
+                                <a href="{% url 'saisie' classe.id e.id %}" class="btn btn-outline-primary mx-2">Saisir</a>
+                              {% endif %}
+                            {% endif %}
+                          </div>
+                        </td>
+                        <td class="text-primary">{{ ef.moy }}</td>
+                        <td class="text-primary">
+                          <div class="row justify-content-between px-4">
+                            <div>
+                              {% if ef.decision == 0 %}
+                                En Attente
+                              {% endif %}
+                              {% if ef.decision == 1 %}
+                                Admis(e)
+                              {% endif %}
+                              {% if ef.decision == 2 %}
+                                Enjambé(e)
+                              {% endif %}
+                              {% if ef.decision == 3 %}
+                                Echoué(e)
+                              {% endif %}
+                            </div>
+                            {% if ef.decision != 0 and ef.reinscrit == 0 %}
+                                <a href="{% url 'reinscrire' classe.id e.id %}" class="btn btn-outline-primary mx-2">Réinscrire</a>
+                            {% endif %}
+                          </div>
+                        </td>
+                        <td>
+                          <a href="{% url 'etudiant' e.id %}" class="text-primary">Voir plus</a>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Matricule</th>
+                      <th>Nom</th>
+                      <th>Prénoms</th>
+                      {% for sem in sems %}
+                        <th>Moy & Nbre crédits | Sem {{ sem }}</th>
+                      {% endfor %}
+                      <th>Moy</th>
+                      <th>Décision</th>
+                      <th>Détails</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #/ container -->
+  </div>
+{% endblock %}

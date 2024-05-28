@@ -1,0 +1,78 @@
+{% extends 'template.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="auth-content my-auto">
+    <div class="text-center">
+        <h1 class="mb-0">Connectez-vous </h1>
+        <h5>à votre compte CampusConnect</h5>
+        <p class="text-muted mt-4">Entrez votre adresse email et mot de passe</p>
+    </div>
+    
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger my-2 text-center">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+    <form class="mt-4 pt-2" action=" {% url 'login' %} " method="POST">
+        
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username"
+                placeholder="Enter username">
+        </div>
+        <div class="mb-3">
+
+            <div class="flex-grow-1">
+                <label class="form-label">Mot de passe</label>
+            </div>
+            <div class="input-group auth-pass-inputgroup">
+                <input type="password" class="form-control" name="password"
+                    placeholder="Enter password" aria-label="Password"
+                    aria-describedby="password-addon">
+                <button class="btn btn-light shadow-none ms-0" type="button"
+                    id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="remember-check">
+                    <label class="form-check-label" for="remember-check">
+                        Se rappeler de moi
+                    </label>
+                </div>
+            </div>
+            <div class="col align-items-end">
+                <div class="flex-shrink-0">
+                    <div class="">
+                        <a href="auth-recoverpw.html" class="text-muted">Mot de passe
+                            oublié?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-md-6">
+                <button class="btn text-white w-100 waves-effect waves-light"
+                    style="background-color: #147A5B;"
+                    type="submit">Connexion</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-light w-100 waves-effect waves-light"
+                    type="reset">Annuler</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+{% endblock content %}
+    
+
+

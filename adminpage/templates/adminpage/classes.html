@@ -1,0 +1,188 @@
+{% extends '../model.html' %}
+{% load static %}
+{% block content %}
+  <div class="content-body">
+    <div style="height: 500px;  background: url('../../../static/assets1/images/hero-bg1.jpg') no-repeat fixed ;"></div>
+
+    <div class="container-fluid mt-3">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8" style="margin-top: -300px;">
+          <div class="card text-center">
+            <div class="d-flex">
+              <img class="img-fluid rounded-circle mx-auto my-3" style="width: 200px; height: 200px;" src="/static/{{ user.logo }}" alt="" />
+              <img class="img-fluid mx-auto my-3" style="width: 200px; height: 200px;" src="{% static 'assets1/images/arrow.png' %}" alt="" />
+              <img class="img-fluid rounded-circle mx-auto my-3" style="width: 200px; height: 200px;" src="/static/{{ filiere.logo }}" alt="" />
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ filiere.name }} ({{ filiere.sigle }})</h5>
+              <p class="card-text">{{ univ.sigle }} || {{ user.sigle }} || {{ filiere.email }} || {{ filiere.site }} || {{ filiere.phone }} || {{ filiere.description }} || {{ filiere.diplome }}</p>
+              <p class="card-text">
+                <small class="text-muted">Département de {{ filiere.nbreAnnee }} niveaux d'études.</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-between">
+        <div class="col-lg-6 my-2">
+          <div class="card">
+            <div class="card-body d-flex flex-wrap mx-auto">
+              <div class="bootstrap-modal">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#basicModal">Créer une nouvelle année d'étude</button>
+                <!-- Modal -->
+                <div class="modal fade" id="basicModal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Créer une nouvelle année d'étude</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-validation">
+                          <form class="form-valide" action=" {% url 'classe' filiere.id %} " method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="hidden" name="form_type" value="classe">
+                            <div class="form-group row my-2">
+                              <div class="mx-auto">
+                                <button type="submit" class="btn btn-primary">Soumettre</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bootstrap-modal">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#basicModa">Inscrire un nouvel étudiant</button>
+                <!-- Modal -->
+                <div class="modal fade" id="basicModa">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Inscrire un nouvel étudiant</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-validation">
+                          <form class="form-valide" action=" {% url 'classe' filiere.id %} " method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form1 }}
+                            <input type="hidden" name="form_type" value="etudiant">
+                            <div class="form-group row my-2">
+                              <div class="mx-auto">
+                                <button type="submit" class="btn btn-primary">Soumettre</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <script>
+                            $(document).ready(function() {
+                                $('#matricule').on('blur', function() {
+                                    var matricule = $(this).val();
+                                    if (matricule) {
+                                        $.ajax({
+                                            url: "{% url 'check' %}",
+                                            data: {
+                                                'matricule': matricule
+                                            },
+                                            dataType: 'json',
+                                            success: function (data) {
+                                                if (data.error) {
+                                                    console.log(data.error);
+                                                } else {
+                                                    $('#nom').val(data.nom);
+                                                    $('#prenoms').val(data.prenoms);
+                                                    $('#email').val(data.email);
+                                                    $('#date_naissance').val(data.date_naissance);
+                                                    $('#adresse').val(data.adresse);
+                                                    $('#phone').val(data.phone);
+                                                    $('#sexe').val(data.sexe);
+                                                    $('#annee_academique').val(data.annee_academique);
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        </script>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success my-2 text-center">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="col-lg-3 my-2">
+          <a href="/admins/entite" class="btn btn-outline-danger">Retourner</a>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for c, f in cf %}
+          <div class="col-lg-3 col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <div class="text-center">
+                  <div style="width: 120px; height: 120px; font-size:50px; display: flex; justify-content: center; align-items: center;" class="rounded-circle bg-dark mx-auto">{{ c.option_sigle }}</div>
+                  <h5 class="mt-3 mb-1">{{ c.name }}</h5>
+                  <h5 class="mt-3 mb-1"> {{ c.sigle }} -- {{ c.option_sigle }}</h5>
+                  <a href=" {% url 'etudiants' c.id %} " class="m-0">Ouvrir</a>
+                  <div class="d-flex justify-content-center">
+                    <a href="#" class="mx-3 align-middle text-primary" data-toggle="modal" data-target="#basicModal{{ c.id }}"><i class="icon-note menu-icon mx-1"></i> <span>Edit</span></a>
+                    <a href="{% url 'delete_classe' c.id %}" class="mx-3 align-middle text-danger"><i class="fa fa-trash mx-1"></i> <span>Delete</span></a>
+                  </div>
+                  <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+                </div>
+                <div class="modal fade" id="basicModal{{ c.id }}" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Modifier la classe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <form class="form-valide" action="{% url 'update_classe' c.id %}" method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          {{ f }}
+                          <div class="form-group row my-2">
+                            <div class="mx-auto">
+                              <button type="submit" class="btn btn-primary">Soumettre</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- #/ container -->
+  </div>
+{% endblock %}

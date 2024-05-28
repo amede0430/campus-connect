@@ -1,0 +1,73 @@
+{% extends '../model.html' %}
+{% load static %}
+{% block content %}
+  <div class="content-body">
+    <div style="height: 500px;  background: url('../../../static/assets1/images/hero-bg1.jpg') no-repeat fixed ;"></div>
+
+    <div class="container-fluid mt-3">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8" style="margin-top: -300px;">
+          <div class="card text-center">
+            <img class="img-fluid rounded-circle mx-auto my-3" style="width: 200px; height: 200px;" src="/static/{{ etudiant.profil }}" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">{{ etudiant.nom }} {{ etudiant.prenoms }}</h5>
+              <p class="card-text">{{ filiere.name }} {{ ef.niveau }}</p>
+              <p class="card-text">
+                <small class="text-muted">{{ user.name }}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        {% if ef.credit_sem1 != 30 %}
+          <div class="col-4">
+            <div class="card">
+              <div class="card-title mx-auto justify-content-center my-2">Semestre Pair</div>
+              <div class="card-body">
+                <div class="form-validation">
+                  <form class="form-valide" action=" {% url 'saisie' classe.id etudiant.id  %} " method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ firstForm }}
+                    <input type="hidden" name="form_type" value="first" />
+                    <div class="form-group row my-2">
+                      <div class="mx-auto">
+                        <button type="submit" class="btn btn-primary">Soumettre</button>
+                        <a href="{% url 'etudiants' classe.id %}" class="btn btn-danger">Annuler</a>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        {% if ef.credit_sem2 != 30 %}
+          <div class="col-4">
+            <div class="card">
+              <div class="card-title mx-auto justify-content-center my-2">Semestre Impair</div>
+                <div class="card-body">
+                    <div class="form-validation">
+                    <form class="form-valide" action=" {% url 'saisie' classe.id etudiant.id  %} " method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ secondForm }}
+                        <input type="hidden" name="form_type" value="seconde" />
+                        <div class="form-group row my-2">
+                        <div class="mx-auto">
+                            <button type="submit" class="btn btn-primary">Soumettre</button>
+                            <a href="{% url 'etudiants' classe.id %}" class="btn btn-danger">Annuler</a>
+                        </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        {% endif %}
+      
+    </div>
+    <!-- #/ container -->
+  </div>
+{% endblock %}

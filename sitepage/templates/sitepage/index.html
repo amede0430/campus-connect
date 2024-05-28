@@ -1,0 +1,469 @@
+{% extends '../model1.html' %}
+{% load static %}
+{% block content %}
+
+  
+<main class="site-content" role="main">
+  
+      <!--
+          Home Slider
+          ==================================== -->
+  
+      <section id="home-slider">
+          <div id="slider" class="sl-slider-wrapper">
+  
+              <div class="sl-slider">
+  
+                  <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25"
+                   data-slice1-scale="2" data-slice2-scale="2">
+                      <div class="mask-overly"></div>
+                      <div class="bg-img slider-1"  >
+                          <div class="slide-caption">
+                              <div class="caption-content">
+                                  <h2 class="animated fadeInDown">
+                                    Prévention de la fraude académique
+                                  </h2>
+                                  <p class="animated fadeInDown">Mécanismes pour détecter et prévenir les tentatives des étudiants de contourner les exigences de réussite
+                                    académique, <br> comme le passage en année supérieure sans avoir atteint la moyenne
+                                    requise.</p>
+                                  <a href="#" class="btn btn-blue btn-effect">Rechercher un Étudiant</a>
+                              </div>
+                          </div>
+                      </div>
+  
+                  </div>
+  
+                  <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15"
+                   data-slice1-scale="1.5" data-slice2-scale="1.5">
+                      <div class="mask-overly"></div>
+                      <div class="bg-img slider-2"></div>
+                      <div class="slide-caption">
+                          <div class="caption-content">
+                              <h2 class="animated fadeInDown">Transparence et suivi du parcours académique</h2>
+                              <p class="animated fadeInDown">Fournir aux autorités
+                                universitaires un moyen de forcer la conformité aux normes et <br> réglementations en
+                                rapport avec le cursus universitaire des étudiants.</p>
+                              <a href="#" class="btn btn-blue btn-effect">Rejoignez Nous</a>
+                          </div>
+                      </div>
+  
+                  </div>
+  
+                  <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3"
+                   data-slice1-scale="2" data-slice2-scale="1">
+                      <div class="mask-overly"></div>
+                      <div class="bg-img slider-3"></div>
+                      <div class="slide-caption">
+                          <div class="caption-content">
+                              <h2 class="animated fadeInDown">Garentir aux entreprises ou personnes</h2>
+                              <p class="animated fadeInDown">
+                                Qui recrutent les diplômés de la
+                                régularité et du suivi rigoureux du parcours de l’étudiant dans les universités béninoises: <br>
+                                cela facilite la prise en compte des diplômes des étudiants sans réserve mais avec une
+                                certitide des compétences de l’étudiant.
+                              </p>
+                              <a href="#" class="btn btn-blue btn-effect">Contactez Nous</a>
+                          </div>
+                      </div>
+  
+                  </div>
+  
+              </div><!-- /sl-slider -->
+  
+              <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
+                  <a href="javascript:;" class="sl-prev">
+                      <i class="fa fa-angle-left fa-3x"></i>
+                  </a>
+                  <a href="javascript:;" class="sl-next">
+                      <i class="fa fa-angle-right fa-3x"></i>
+                  </a>
+              </nav>
+  
+  
+              <nav id="nav-dots" class="nav-dots visible-xs visible-sm hidden-md hidden-lg">
+                  <span class="nav-dot-current"></span>
+                  <span></span>
+                  <span></span>
+              </nav>
+  
+          </div><!-- /slider-wrapper -->
+      </section>
+  
+      <!--
+          End Home SliderEnd
+          ==================================== -->
+  
+  
+      <section id="feature">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="section-title text-center">
+                          <h2>Qui visons-nous?</h2>
+                          <p>La cible du projet comprend plusieurs acteurs clés qui seront impliqués dans l'utilisation
+                             <br> et la gestion de la plateforme de gestion du parcours universitaire des étudiants.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <h4>Étudiants</h4>
+                      <p>Cible primaire</p>
+                      <ul class="list-nav">
+                          <li><i class="ion-ios-checkmark-empty"></i>Ils pourront accéder à leur profil académique,</li>
+                          <li><i class="ion-ios-checkmark-empty"></i>consulter leurs résultats,</li>
+                          <li><i class="ion-ios-checkmark-empty"></i>cuivre leur progression dans leur cursus.</li>
+                      </ul>
+
+                      <h4>Personnels administratifs</h4>
+                    <p>Cible secondaire</p>
+                    <ul class="list-nav">
+                        <li><i class="ion-ios-checkmark-empty"></i>Ils utiliseront
+                            la plateforme pour enregistrer les notes,</li>
+                        <li><i class="ion-ios-checkmark-empty"></i>suivre la participation des étudiants,</li>
+                        <li><i class="ion-ios-checkmark-empty"></i>accéder à des données pertinentes sur le parcours des étudiants,</li>
+                        <li><i class="ion-ios-checkmark-empty"></i>autoriser un transfert après étude de dossier.</li>
+                    </ul>
+                  </div>
+                    
+                  <div class="col-md-8">
+                      <img class="img-fluid" src="{% static 'assets/images/video-bg.jpg' %} "  alt="">
+                  </div>
+              </div>
+          </div>
+      </section>
+  
+  
+      <section id="prototype">
+          <div class="container">
+          </div>
+      </section>
+  
+  
+  
+      <!-- Service section -->
+      <section id="service">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="section-title text-center">
+                          <h2>Nos Services</h2>
+                          <p>Les services que nous offrons à travers ce projet, <br> sont d'une grande importance pour le milieu universitaire.</p>
+                      </div>
+                  </div>
+  
+                  <div class="col-md-3 col-sm-6 col-xs-12 text-center">
+                      <div class="service-item">
+                          <div class="service-icon">
+                              <i class="ion-laptop"></i>
+                          </div>
+                          <h3>Rechercher un étudiant</h3>
+                          <p>La plateforme permet de visualiser le parcours d'un étudiant à partir de son matricule et autres informations personnelles. </p>
+                      </div>
+                  </div>
+  
+                  <div class="col-md-3 col-sm-6 col-xs-12 text-center" data-wow-delay="0.3s">
+                      <div class="service-item">
+                          <div class="service-icon">
+                              <i class="ion-ios-checkmark-outline"></i>
+                          </div>
+                          <h3>Pdf du cursus</h3>
+                          <p>La plateforme permet la génération en format
+                            PDF du cursus d'un étudiant, ce qui est utile pour accompagner les demandes de
+                            stage académique ou professionnel. </p>
+                      </div>
+                  </div>
+  
+                  <div class="col-md-3 col-sm-6 col-xs-12 text-center ">
+                      <div class="service-item">
+                          <div class="service-icon">
+                              <i class="ion-ios-compose-outline"></i>
+                          </div>
+                          <h3>Inscriptions multiples</h3>
+                          <p>La plateforme prend en charge le suivi des
+                            étudiants qui suivent plusieurs formations simultanément, assurant une gestion
+                            efficace de leurs parcours académiques.</p>
+                      </div>
+                  </div>
+  
+                  <div class="col-md-3 col-sm-6 col-xs-12 text-center" data-wow-delay="0.9s">
+                      <div class="service-item">
+                          <div class="service-icon">
+                              <i class="ion-ios-paperplane-outline"></i>
+                          </div>
+                          <h3>Transfert Rapide</h3>
+                          <p>Les utilisateurs peuvent demander et étudier le transfert d'un
+                            étudiant d'une université ou entité à une autre. </p>
+                      </div>
+                  </div>
+  
+              </div>
+          </div>
+      </section>
+      <!-- end Service section -->
+  
+      <section class="video-bg">
+          <div class="overlay"></div>
+          <div class="container">
+              <div class="row">
+                  <div class="mx-auto col-md-8">
+                      <div class="section-title text-center white">
+                          <h2>Que projecte Campus Connect pour le future?</h2>
+                          <p>Nous avons mieux pour le cadre universitaire béninois.</p>
+                      </div>
+                      <div class="modal-section text-center">
+                          <a href="#" data-toggle="modal" data-target="#video-modal" class="video-popup-button">
+                              <i class="ion-play"></i>
+                          </a>
+                          <div class="modal fade" id="video-modal" tabindex="-1" role="dialog">
+                              <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <div class="embed-responsive embed-responsive-16by9">
+                                              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/u7mhxWKZovc"></iframe>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  
+      <!-- portfolio section -->
+      <section id="portfolio">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="section-title text-center">
+                          <h2>Nos universités</h2>
+                          <p>Les universités publiques comme privées du Bénin ainsi que leurs entités.</p>
+                      </div>
+                      <ul class="portfolio-filter text-center">
+                          <li><a href="#" data-filter="*" class="active">Tout</a></li>
+                          <li><a href="#" data-filter=".photoshop">Universités publiques</a></li>
+                          <li><a href="#" data-filter=".responsive">Universités privés</a></li>
+                          <li><a href="#" data-filter=".wordpress">Écoles & Facultés</a></li>
+                          <li><a href="#" data-filter=".illustrator">Filières</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="row project-wrapper">
+                
+                {% for u in univs_pub %}
+                    <div class="col-sm-6 col-md-4 photoshop">
+                        <div class="portfolio-item">
+                            <img src="/static/{{u.logo}}" width="200px" height="200px" class="img-fluid " alt="{{u.description}}">
+                            <figcaption class="mask">
+                                <h3>{{u.name}}</h3>
+                                <p>{{u.sigle}}</p>
+                                <p>{{u.email}}</p>
+                                <p>{{u.phone}}</p>
+                            </figcaption>
+                            <ul class="external">
+                                <li><a class="fancybox" title="{{u.name}}" data-fancybox-group="works" href="/static/{{u.logo}}"><i
+                                class="ion-ios-search"></i></a></li>
+                                <li><a href="{{u.site}}"><i class="ion-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+                 
+  
+                
+                {% for u in univs_priv %}
+                    <div class="col-sm-6 col-md-4 responsive">
+                        <div class="portfolio-item">
+                            <img src="/static/{{u.logo}}" width="200px" height="200px" class="img-fluid " alt="{{u.description}}">
+                            <figcaption class="mask">
+                                <h3>{{u.name}}</h3>
+                                <p>{{u.sigle}}</p>
+                                <p>{{u.email}}</p>
+                                <p>{{u.phone}}</p>
+                            </figcaption>
+                            <ul class="external">
+                                <li><a class="fancybox" title="{{u.name}}" data-fancybox-group="works" href="/static/{{u.logo}}"><i
+                                class="ion-ios-search"></i></a></li>
+                                <li><a href="{{u.site}}"><i class="ion-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+                 
+                
+                {% for u in entites %}
+                    <div class="col-sm-6 col-md-4 wordpress">
+                        <div class="portfolio-item">
+                            <img src="/static/{{u.logo}}" width="200px" height="200px" class="img-fluid " alt="{{u.description}}">
+                            <figcaption class="mask">
+                                <h3>{{u.name}}</h3>
+                                <p>{{u.sigle}}</p>
+                                <p>{{u.email}}</p>
+                                <p>{{u.phone}}</p>
+                            </figcaption>
+                            <ul class="external">
+                                <li><a class="fancybox" title="{{u.name}}" data-fancybox-group="works" href="/static/{{u.logo}}"  ><i
+                                class="ion-ios-search"></i></a></li>
+                                <li><a href="{{u.site}}"><i class="ion-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+  
+                
+                {% for u in filieres %}
+                    <div class="col-sm-6 col-md-4 illustrator">
+                        <div class="portfolio-item">
+                            <img src="/static/{{u.logo}}" width="200px" height="200px" class="img-fluid " alt="{{u.description}}">
+                            <figcaption class="mask">
+                                <h3>{{u.name}}</h3>
+                                <p>{{u.sigle}}</p>
+                                <p>{{u.email}}</p>
+                                <p>{{u.phone}}</p>
+                            </figcaption>
+                            <ul class="external">
+                                <li><a class="fancybox" title="{{u.name}}" data-fancybox-group="works" href="/static/{{u.logo}}"><i
+                                class="ion-ios-search"></i></a></li>
+                                <li><a href="{{u.site}}"><i class="ion-link"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+  
+                  
+              </div>
+          </div>
+      </section>
+      <!-- end portfolio section -->
+  
+      <!-- Testimonial section -->
+      <section id="testimonials" class="parallax">
+          <div class="container">
+              <div class="row">
+  
+                  <div class="col-lg-12">
+                      <div class="section-title text-center white ">
+                          <h2>L'Équipe</h2>
+                      </div>
+                  </div>
+                  <div class="col-lg-12">
+                      <div id="testimonial" class="">
+                          <div class="testimonial-item text-center">
+                              <img class="img-fluid" src=" {% static 'assets/images/WhatsApp Image 2024-05-16 at 10.18.52 PM.jpeg' %} " style="width: 200px; height: 100px;"  alt="Our Clients">
+                              <div class="clearfix">
+                                  <span>Kotanmi Amédé Florian</span>
+                                  <p>GIT4-RII1</p>
+                              </div>
+                          </div>
+                          <div class="testimonial-item text-center">
+                              <img class="img-fluid" src="{% static 'assets/images/WhatsApp Image 2024-05-16 at 10.18.54 PM.jpeg' %}" style="width: 200px; height: 100px;"  alt="Our Clients">
+                              <div class="clearfix">
+                                  <span>Avohou Boris Prince</span>
+                                  <p>GIT4-RII1</p>
+                              </div>
+                          </div>
+                          <div class="testimonial-item text-center">
+                              <img class="img-fluid" src="{% static 'assets/images/member-1.jpg' %}" style="width: 200px; height: 100px;" alt="Our Clients">
+                              <div class="clearfix">
+                                  <span>Sewade Peniel</span>
+                                  <p>GIT4-RII1</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- end Testimonial section -->
+  
+  
+      <!-- Social section -->
+      <section id="social" class="parallax">
+          <div class="overlay">
+              <div class="container">
+                  <div class="row">
+  
+                      <div class="col-lg-12">
+                          <div class="section-title white text-center white ">
+                              <h2>suivez-nous</h2>
+                              <p>Nous sommes présents <br> sur les réseaux sociaux.</p>
+                          </div>
+                      </div>
+  
+                      <div class="col-lg-12">
+                          <ul class="social-button">
+                              <li class="wow animated zoomIn"><a href="#"><i class="ion-social-facebook"></i></a></li>
+                              <li class="wow animated zoomIn" data-wow-delay="0.3s"><a href="#"><i class="ion-social-twitter"></i></a></li>
+                              <li class="wow animated zoomIn" data-wow-delay="0.6s"><a href="#"><i class="ion-social-dribbble"></i></a></li>
+                              <li class="wow animated zoomIn" data-wow-delay="0.9s"><a href="#"><i class="ion-social-linkedin"></i></a></li>
+                          </ul>
+                      </div>
+  
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- end Social section -->
+  
+      <!-- Contact section -->
+      <section id="contact">
+          <div class="container">
+              <div class="row">
+  
+                  <div class="col-lg-12">
+                      <div class="section-title text-center">
+                          <h2>Contact</h2>
+                          <p>Entretenir avec vous.</p>
+                      </div>
+                  </div>
+  
+                  <div class="col-md-7 contact-form">
+                      <form id="contact-form" action="#" method="post">
+                          <div class="input-field">
+                              <input type="text" name="name" class="form-control" placeholder="Your Name...">
+                          </div>
+                          <div class="input-field">
+                              <input type="email" name="email" class="form-control" placeholder="Your Email...">
+                          </div>
+                          <div class="input-field">
+                              <input type="text" name="subject" class="form-control" placeholder="Subject...">
+                          </div>
+                          <div class="input-field">
+                              <textarea name="message" class="form-control" placeholder="Messages..."></textarea>
+                          </div>
+                          <div id="mail-success" class="success-ms">
+                              Thank you. The Mailman is on His Way :)
+                          </div>
+                          <div id="mail-fail" class="error-ms">
+                              Sorry, don't know what happened. Try later :(
+                          </div>
+                          <button type="submit" id="submit" class="btn btn-blue btn-effect">Envoyer</button>
+                      </form>
+  
+                  </div>
+                  <div class="col-md-5">
+                      <address class="contact-details">
+                          <h3>Notre Adresse</h3>
+                          <p><i class="ion-ios-home-outline"></i>EPAC-GIT</p>
+                          <p><i class="ion-ios-telephone-outline"></i>Phone: +229 52747455 </p>
+                          <p><i class="ion-ios-email-outline"></i>campus@connect.com</p>
+                      </address>
+                  </div>
+  
+              </div>
+          </div>
+      </section>
+      <!-- end Contact section -->
+  
+  
+</main>
+{% endblock content %}
+    
+

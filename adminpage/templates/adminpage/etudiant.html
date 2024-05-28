@@ -1,0 +1,115 @@
+{% extends '../model.html' %}
+{% load static %}
+{% block content %}
+  <div class="content-body">
+    <div style="height: 500px;  background: url('../../static/assets1/images/hero-bg1.jpg') no-repeat fixed ;"></div>
+
+    <div class="container-fluid mt-3">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8" style="margin-top: -300px;">
+          <div class="card text-center">
+            <img class="img-fluid rounded-circle mx-auto my-3" style="width: 200px; height: 200px;" src="/static/{{ etudiant.profil }}" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">{{ etudiant.nom }} {{ etudiant.prenoms }}</h5>
+              <p class="card-text">{{ etudiant.email }} || {{ etudiant.phone }} || {{ etudiant.sexe }} || {{ etudiant.adresse }} || {{ etudiant.date_naissance }}</p>
+              <p class="card-text">
+                <small class="text-muted">{{ etudiant.matricule }}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row justify-content-between mx-5">
+                <h4 class="card-title">Cursus Étudiant</h4>
+                <div class="col-lg-3 my-2">
+                  <a href=" {% url 'entite' %} " class="btn btn-outline-danger">Retourner</a>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered zero-configuration">
+                  <thead>
+                    <tr>
+                      <th>Année Académique</th>
+                      <th>Année d'étude</th>
+                      <th>Moy | Sem 1</th>
+                      <th>Nbre crédits | Sem 1</th>
+                      <th>Moy| Sem 2</th>
+                      <th>Nbre crédits | Sem 2</th>
+                      <th>Moy</th>
+                      <th>Décision</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for c in cursus %}
+                      <tr>
+                        <td colspan="8">
+                          <div class="row justify-content-between px-5">
+                            <div>
+                              {{ c.univ.sigle }}
+                            </div>
+                            <div>
+                              <b> {{ c.filiere.name }} -- {{ c.filiere.sigle }}</b>
+                            </div>
+                            <div>
+                              {{ c.entite.sigle }}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {% for ef, c in c.efc %}
+                        <tr>
+                          <td>{{ ef.annee_academique }}</td>
+                          <td>{{ c.option_sigle }}</td>
+                          <td class="text-primary">{{ ef.moy_sem1 }}/100</td>
+                          <td class="text-primary">{{ ef.credit_sem1 }}/30</td>
+                          <td class="text-primary">{{ ef.moy_sem2 }}/100</td>
+                          <td class="text-primary">{{ ef.credit_sem2 }}/30</td>
+                          <td>{{ ef.moy }}/100</td>
+                          <td>
+                            <div class="text-secondary" >
+                              {% if ef.decision == 0 %}
+                                En Attente
+                              {% endif %}
+                              {% if ef.decision == 1 %}
+                                Admis(e)
+                              {% endif %}
+                              {% if ef.decision == 2 %}
+                                Enjambé(e)
+                              {% endif %}
+                              {% if ef.decision == 3 %}
+                                Echoué(e)
+                              {% endif %}
+                            </div>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Année Académique</th>
+                      <th>Année d'étude</th>
+                      <th>Moy | Sem 1</th>
+                      <th>Nbre crédits | Sem 1</th>
+                      <th>Moy| Sem 2</th>
+                      <th>Nbre crédits | Sem 2</th>
+                      <th>Moy</th>
+                      <th>Décision</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #/ container -->
+  </div>
+{% endblock %}
